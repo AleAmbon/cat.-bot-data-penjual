@@ -1,0 +1,27 @@
+CREATE DATABASE IF NOT EXISTS toko_iki;
+USE toko_iki;
+
+CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'karyawan') DEFAULT 'karyawan',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS barang (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama_barang VARCHAR(100) NOT NULL,
+    harga DECIMAL(10, 2) NOT NULL,
+    stok INT NOT NULL,
+    deskripsi TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS chat_history (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    message TEXT NOT NULL,
+    response TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
